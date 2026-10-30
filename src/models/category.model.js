@@ -22,13 +22,14 @@ const categorySchema = new Schema(
 );
 
 // Relación N:M inversa: eventos que tienen la categoria en su array categories
-categorySchema.virtual("Event", {
+categorySchema.virtual("events", {
    ref: "Event",
    localField: "_id",       // category._id
    foreignField: "categories", // Event.categories[]
    justOne: false,
  });
 
-categorySchema.set("toJSON", { virtuals: true });
+categorySchema.set("toJSON", { virtuals: true }); //virtuales a json
+categorySchema.set("toObject", { virtuals: true });// y como objeto
 
 export const CategoryModel = model("Category", categorySchema);

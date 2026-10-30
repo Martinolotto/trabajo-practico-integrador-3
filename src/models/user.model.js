@@ -80,7 +80,7 @@ const userSchema = new Schema(
 
 
 // // Relación 1:N: inversa, acceder a los eventos desde user.
-userSchema.virtual("Event", {
+userSchema.virtual("events", {
    ref: "Event",
    localField: "_id",      // user._id
    foreignField: "organizer", // Event.organizer
@@ -88,7 +88,7 @@ userSchema.virtual("Event", {
 }); 
 
 userSchema.set("toJSON", { virtuals: true });
-
+userSchema.set("toObject", { virtuals: true });
 
 export const UserModel = model("User", userSchema);
 
